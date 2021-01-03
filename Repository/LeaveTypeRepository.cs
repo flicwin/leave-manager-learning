@@ -38,9 +38,15 @@ namespace leave_manager.Repository
             return _db.LeaveTypes.Find(id);
         }
 
-        public ICollection<LeaveType> GetEmploeesByLeaveType(int id)
+        public ICollection<LeaveType> GetEmployeesByLeaveType(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public bool isExists(int id)
+        {
+            var exists = _db.LeaveTypes.Any(q => q.Id == id);
+            return exists;
         }
 
         public bool Save()

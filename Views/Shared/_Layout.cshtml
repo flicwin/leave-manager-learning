@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Leave Manager</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -27,7 +31,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true">Manage</a>
                             <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMennuLink">
-                                <a class="dropdown-item bg-dark text-light" href="#">Leave Types</a>
+                                <a class="dropdown-item bg-dark text-light" asp-controller="LeaveTypes" asp-action="Index">Leave Types</a>
                                 <a class="dropdown-item bg-dark text-light" href="#">Leave Allocations</a>
                                 <a class="dropdown-item bg-dark text-light" href="#">Leave Applications</a>
                                 <a class="dropdown-item bg-dark text-light" href="#">Employees</a>
@@ -46,13 +50,16 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container text-center">
             &copy; @DateTime.Now.Year - Leave Manager by flic.MEDIA - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
