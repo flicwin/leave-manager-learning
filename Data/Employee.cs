@@ -13,6 +13,5 @@ namespace leave_manager.Data
         public string TFN { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime DateJoined { get; set; }
-
     }
 }
