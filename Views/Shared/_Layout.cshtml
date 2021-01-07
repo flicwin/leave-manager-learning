@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,18 +28,30 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="">Apply</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true">Manage</a>
-                            <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMennuLink">
-                                <a class="dropdown-item bg-dark text-light" asp-controller="LeaveTypes" asp-action="Index">Leave Types</a>
-                                <a class="dropdown-item bg-dark text-light" href="#">Leave Allocations</a>
-                                <a class="dropdown-item bg-dark text-light" href="#">Leave Applications</a>
-                                <a class="dropdown-item bg-dark text-light" href="#">Employees</a>
-                            </div>
-                        </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            if (User.IsInRole("Employee"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="">Apply</a>
+                                </li>
+                            }
+                        }
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            if (User.IsInRole("Administrator"))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true">Manage</a>
+                                    <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMennuLink">
+                                        <a class="dropdown-item bg-dark text-light" asp-controller="LeaveTypes" asp-action="Index">Leave Types</a>
+                                        <a class="dropdown-item bg-dark text-light" href="#">Leave Allocations</a>
+                                        <a class="dropdown-item bg-dark text-light" href="#">Leave Applications</a>
+                                        <a class="dropdown-item bg-dark text-light" href="#">Employees</a>
+                                    </div>
+                                </li>
+                            }
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

@@ -21,7 +21,8 @@ namespace leave_manager.Areas.Identity.Pages.Account.Manage
             _userManager = userManager;
             _signInManager = signInManager;
         }
-
+        
+        [Display(Name ="Email")]
         public string Username { get; set; }
 
         [TempData]
