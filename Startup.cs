@@ -43,7 +43,7 @@ namespace leave_manager
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => { options.SignIn.RequireConfirmedAccount = true; 
+            services.AddDefaultIdentity<Employee>(options => { options.SignIn.RequireConfirmedAccount = true; 
                 options.Lockout.MaxFailedAccessAttempts = 2; 
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1); })
                 .AddRoles<IdentityRole>()
@@ -57,7 +57,7 @@ namespace leave_manager
         public void Configure(
             IApplicationBuilder app, 
             IWebHostEnvironment env,
-            UserManager<IdentityUser> userManager,
+            UserManager<Employee> userManager,
             RoleManager<IdentityRole> roleManager
             )
         {
@@ -65,6 +65,7 @@ namespace leave_manager
             {
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
+                //app.UseBrowserLink();
             }
             else
             {

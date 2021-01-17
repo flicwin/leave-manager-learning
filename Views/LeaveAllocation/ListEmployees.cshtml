@@ -1,0 +1,56 @@
+﻿@model IEnumerable<leave_manager.Models.EmployeeVM>
+
+@{
+    ViewData["Title"] = "List of Employees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Employee List</h1>
+<hr />
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table id="tblData" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.FirstName)</a>
+                @*@Html.DisplayFor(modelItem => item.FirstName)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                <a href="mailto:@item.Email" target="_blank">@Html.DisplayFor(modelItem => item.Email)</a>
+            </td>
+            <td class="text-center">
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
+                @*<a asp-action="Details" asp-route-id="@item.Id">Details</a>*@
+                <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;View</a>
+                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

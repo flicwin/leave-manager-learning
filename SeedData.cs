@@ -9,21 +9,23 @@ namespace leave_manager
 {
     public static class SeedData
     {
-        public static void Seed(UserManager<IdentityUser> userManager,
+        public static void Seed(UserManager<Employee> userManager,
             RoleManager<IdentityRole> roleManager)
         {
             SeedRoles(roleManager);
             SeedUsers(userManager);
         }
 
-        private static void SeedUsers(UserManager<IdentityUser> userManager)
+        private static void SeedUsers(UserManager<Employee> userManager)
         {
             var users = userManager.GetUsersInRoleAsync("Employee").Result;
 
             if (userManager.FindByNameAsync("admin@localhost.com").Result == null)
             {
-                var user = new IdentityUser
+                var user = new Employee
                 {
+                    FirstName = "Base",
+                    LastName = "Administrator",
                     UserName = "admin@localhost.com",
                     Email = "admin@localhost.com",
                     EmailConfirmed = true
