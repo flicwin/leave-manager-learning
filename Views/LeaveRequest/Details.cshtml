@@ -1,0 +1,65 @@
+﻿@model leave_manager.Models.LeaveRequestVM
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Assess @Model.RequestingEmployee.FirstName's @Model.LeaveType.Name Leave Request</h1>
+
+<h4>
+    @Html.DisplayNameFor(model => model.DateRequested): @Model.DateRequested.ToLocalTime().ToString("dd MMM yyyy")<br /><br />
+    @if (Model.Approved == true)
+    {
+        <span class="badge badge-success">Approved</span>
+    }
+    else if (Model.Approved == false)
+    {
+        <span class="badge badge-danger">Rejected</span>
+    }
+    else
+    {
+        <span class="badge badge-info">Pending</span>
+    }
+</h4>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RequestingEmployee)
+        </dt>
+        <dd class="col-sm-10">
+            @Model.RequestingEmployee.FirstName @Model.RequestingEmployee.LastName
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Model.StartDate.ToLocalTime().ToString("dd MMM yyyy")
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Model.EndDate.ToLocalTime().ToString("dd MMM yyyy")
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LeaveType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LeaveType.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RequestComments)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RequestComments)
+        </dd>
+    </dl>
+</div>
+<div>@if (Model.Approved == null)
+{
+    <a class="btn btn-outline-success" asp-action="ApproveRequest" asp-route-id="@Model.Id">Approve</a> <a class="btn btn-outline-danger" asp-action="RejectRequest" asp-route-id="@Model.Id">Reject</a>
+}
+    <a class="btn btn-outline-secondary" asp-action="Index">Back to List</a>
+</div>

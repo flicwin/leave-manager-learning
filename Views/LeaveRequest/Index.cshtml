@@ -1,0 +1,121 @@
+﻿@model AdminLeaveRequestViewVM
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Leave Requests</h1>
+<p>
+    <a class="btn btn-outline-success" asp-action="Create"> <i class="fa fa-plus-circle" aria-hidden="true"></i> New Request</a>
+</p>
+<hr />
+<div class="jumbotron">
+    <div class="card"  style="background-color: #E9ECEF; border:none;">
+        <div class="row text-center"  style="background-color: #E9ECEF; border:none;">
+            <div class="col-md-3" style="background-color: #E9ECEF;">
+                <div class="card">
+                    <img class="card-img-top" src="~/images/cal.webp" alt="Card image cap">
+                    <div class="card-body">
+                        <h1 class="card-title text-center">@Model.TotalRequests</h1>
+                        <h5 class="card-text text-center">@Html.DisplayNameFor(model => model.TotalRequests)</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" style="background-color: #E9ECEF;">
+                <div class="card">
+                    <img class="card-img-top" src="~/images/cal.webp" alt="Card image cap">
+                    <div class="card-body">
+                        <h1 class="card-title text-center">@Model.PendingRequests</h1>
+                        <h5 class="card-text text-center">@Html.DisplayNameFor(model => model.PendingRequests)</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" style="background-color: #E9ECEF;">
+                <div class="card">
+                    <img class="card-img-top" src="~/images/cal.webp" alt="Card image cap">
+                    <div class="card-body">
+                        <h1 class="card-title text-center">@Model.ApprovedRequests</h1>
+                        <h5 class="card-text text-center">@Html.DisplayNameFor(model => model.ApprovedRequests)</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" style="background-color: #E9ECEF;">
+                <div class="card">
+                    <img class="card-img-top" src="~/images/cal.webp" alt="Card image cap">
+                    <div class="card-body">
+                        <h1 class="card-title text-center">@Model.RejectedRequests</h1>
+                        <h5 class="card-text text-center">@Html.DisplayNameFor(model => model.RejectedRequests)</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="jumbotron">
+    <div class="card" style="background-color: #E9ECEF; border:none;">
+        <table id="tblData" class="table table-striped table-bordered table-hover" style="background-color:white;">
+            <thead>
+                <tr>
+                    <th>
+                        Employee
+                    </th>
+                    <th class="text-center">
+                        Requested
+                    </th>
+                    <th class="text-center">
+                        Type
+                    </th>
+                    <th class="text-center">
+                        Start
+                    </th>
+                    <th class="text-center">
+                        End
+                    </th>
+                    <th class="text-center">
+                        Status
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.LeaveRequests)
+                {
+                    <tr>
+                        <td>
+                            <a asp-controller="LeaveAllocation" asp-action="Details" asp-route-id="@item.RequestingEmployeeId">@Html.DisplayFor(modelItem => item.RequestingEmployee.FirstName)&nbsp;@Html.DisplayFor(modelItem => item.RequestingEmployee.LastName)</a>
+                        </td>
+                        <td class="text-center">
+                            @item.DateRequested.ToLocalTime().ToString("dd MMM yyyy")
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.LeaveType.Name)
+                        </td>
+                        <td class="text-center">
+                            @item.StartDate.ToLocalTime().ToString("dd MMM yyyy")
+                        </td>
+                        <td class="text-center">
+                            @item.EndDate.ToLocalTime().ToString("dd MMM yyyy")
+                        </td>
+                        <td class="text-center">
+                            @if (item.Approved == true)
+                            {
+                                <span class="badge badge-success">Approved</span>
+                            }
+                            else if (item.Approved == false)
+                            {
+                                <span class="badge badge-danger">Rejected</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-info">Pending</span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;Assess</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -60,7 +60,7 @@ namespace leave_manager.Data.Migrations
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LeaveTypeId = table.Column<int>(type: "int", nullable: false),
                     DateRequested = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateActioned = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateActioned = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Approved = table.Column<bool>(type: "bit", nullable: true),
                     ApprovedById = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },

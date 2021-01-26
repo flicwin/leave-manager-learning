@@ -1,0 +1,95 @@
+﻿@model EmployeeLeaveRequestViewVM
+
+@{ ViewData["Title"] = "MyLeave"; }
+
+<h1>My Leave Allocations</h1>
+<div class="jumbotron">
+    <div class="card" style="background-color: #E9ECEF; border:none;">
+        <ul class="list-group list-group-flush">
+            @foreach (var item in Model.LeaveAllocations)
+            {
+<li class="list-group-item">
+    <h6>@item.LeaveType.Name <span class="badge badge-secondary">@item.NumberOfDays</span>    </h6>
+</li>}
+        </ul>
+    </div>
+</div>
+
+<h1>My Leave Records</h1>
+
+<div class="jumbotron">
+    <div class="card" style="background-color: #E9ECEF; border:none;">
+        <table id="tblData" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Leave Type
+                    </th>
+                    <th class="text-center">
+                        Start Date
+                    </th>
+                    <th class="text-center">
+                        End Date
+                    </th>
+                    <th class="text-center">
+                        Date Requested
+                    </th>
+
+                    <th class="text-center">
+                        Approval State
+                    </th>
+
+                    <th class="text-center">
+                        Cancel Request
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.LeaveRequests)
+                {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeaveType.Name)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.DateRequested, new { @value = item.DateRequested.ToString("yyyy-mm-dd") })
+        </td>
+
+        <td class="text-center">
+            @if (item.Cancelled)
+            {
+                <span class="badge badge-secondary">Cancelled</span> }
+                else if (item.Approved == true)
+                {
+                <span class="badge badge-success">Approved</span> }
+                else if (item.Approved == false)
+                {
+                <span class="badge badge-danger">Rejected</span> }
+                else
+                {
+                <span class="badge badge-warning">Pending Approval</span>
+                }
+        </td>
+
+        <td class="text-center">
+            @if ((!item.Cancelled && item.StartDate > DateTime.Now))
+            {
+<a asp-action="CancelRequest" class="btn btn-outline-danger" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to cancel this request?')">
+    <i class="fa fa-trash-o" aria-hidden="true"></i>
+</a>}
+
+        </td>
+    </tr>
+}
+            </tbody>
+        </table>
+    </div>
+</div>
+

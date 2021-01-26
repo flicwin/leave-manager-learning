@@ -6,31 +6,34 @@
 }
 
 <h1>Leave Allocations</h1>
-<hr />
-<table id="tblData" class="table table-striped table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>
-                Leave Types
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.LeaveTypes)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
+<div class="jumbotron">
+    <div class="card" style="background-color: #E9ECEF; border:none;">
+        <table id="tblData" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Leave Types
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.LeaveTypes)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
 
-                <td class="text-center">
-                    <a class="btn btn-outline-secondary" asp-action="SetLeave" asp-route-id="@item.Id">
-                        <i class="fa fa-university" aria-hidden="true"></i>&nbsp;Process
-                    </a>
+                        <td class="text-center">
+                            <a class="btn btn-outline-secondary" asp-action="SetLeave" asp-route-id="@item.Id">
+                                <i class="fa fa-university" aria-hidden="true"></i>&nbsp;Process
+                            </a>
 
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+    </div>

@@ -1,6 +1,9 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-
+.landing {
+/*    background: url(https://res.cloudinary.com/flic-media/image/upload/v1611462279/leaving_ym4qls.webp) center center fixed;
+    background-size: cover;*/
+}
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -54,13 +57,15 @@ button.accept-policy {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
-}
+    position: relative;
+    min-height: 100%;
 
+}
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background: url(https://res.cloudinary.com/flic-media/image/upload/v1611462279/leaving_ym4qls.webp) center center fixed;
+    background-size: cover;
 }
 .footer {
   position: absolute;
