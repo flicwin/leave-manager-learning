@@ -1,8 +1,16 @@
-﻿@model leave_manager.Models.EditLeaveAllocationVM
+﻿@using leave_manager.App_Code;
+@model leave_manager.Models.EditLeaveAllocationVM
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Global.SiteLayout == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = Global.SiteLayout;
+    }
 }
 
 <h1>Editing @Model.LeaveType.Name Leave allocation for @Model.Employee.FirstName</h1>
@@ -19,7 +27,7 @@
                 <span asp-validation-for="NumberOfDays" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @{ 
+                @{
                     var navTo = ("Details/" + Model.EmployeeId);
                 }
                 <input type="submit" value="Update" class="btn btn-outline-primary" />&nbsp;<a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@Model.EmployeeId">Back</a>
@@ -29,6 +37,6 @@
 </div>
 
 <div>
-    
+
 </div>
 

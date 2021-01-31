@@ -1,8 +1,16 @@
 ﻿@model leave_manager.Models.CreateLeaveAllocationVM
+@using leave_manager.App_Code;
 
 @{
+    if (Global.SiteLayout == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = Global.SiteLayout;
+    }
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Leave Allocations</h1>
@@ -35,5 +43,5 @@
                 }
             </tbody>
         </table>
-        </div>
     </div>
+</div>

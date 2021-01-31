@@ -1,22 +1,30 @@
-﻿@model AdminLeaveRequestViewVM
+﻿@using leave_manager.App_Code;
+@model AdminLeaveRequestViewVM
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Global.SiteLayout==null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = Global.SiteLayout;
+    }
 }
 <h1>Leave Requests</h1>
-<p>
-    <a class="btn btn-outline-success" asp-action="Create"> <i class="fa fa-plus-circle" aria-hidden="true"></i> New Request</a>
-</p>
+@*<p>
+        <a class="btn btn-outline-success" asp-action="Create"> <i class="fa fa-plus-circle" aria-hidden="true"></i> New Request</a>
+    </p>*@
 <hr />
 <div class="jumbotron">
-    <div class="card"  style="background-color: #E9ECEF; border:none;">
-        <div class="row text-center"  style="background-color: #E9ECEF; border:none;">
+    <div class="card" style="background-color: #E9ECEF; border:none;">
+        <div class="row text-center" style="background-color: #E9ECEF; border:none;">
             <div class="col-md-3" style="background-color: #E9ECEF;">
                 <div class="card">
                     <img class="card-img-top" src="~/images/cal.webp" alt="Card image cap">
                     <div class="card-body">
-                        <h1 class="card-title text-center">@Model.TotalRequests</h1>
+                        <h1 class="text-center">@Model.TotalRequests</h1>
                         <h5 class="card-text text-center">@Html.DisplayNameFor(model => model.TotalRequests)</h5>
                     </div>
                 </div>
@@ -25,7 +33,7 @@
                 <div class="card">
                     <img class="card-img-top" src="~/images/cal.webp" alt="Card image cap">
                     <div class="card-body">
-                        <h1 class="card-title text-center">@Model.PendingRequests</h1>
+                        <h1 class="text-center text-primary">@Model.PendingRequests</h1>
                         <h5 class="card-text text-center">@Html.DisplayNameFor(model => model.PendingRequests)</h5>
                     </div>
                 </div>
@@ -34,7 +42,7 @@
                 <div class="card">
                     <img class="card-img-top" src="~/images/cal.webp" alt="Card image cap">
                     <div class="card-body">
-                        <h1 class="card-title text-center">@Model.ApprovedRequests</h1>
+                        <h1 class="text-center text-success">@Model.ApprovedRequests</h1>
                         <h5 class="card-text text-center">@Html.DisplayNameFor(model => model.ApprovedRequests)</h5>
                     </div>
                 </div>
@@ -43,7 +51,7 @@
                 <div class="card">
                     <img class="card-img-top" src="~/images/cal.webp" alt="Card image cap">
                     <div class="card-body">
-                        <h1 class="card-title text-center">@Model.RejectedRequests</h1>
+                        <h1 class="text-center text-danger">@Model.RejectedRequests</h1>
                         <h5 class="card-text text-center">@Html.DisplayNameFor(model => model.RejectedRequests)</h5>
                     </div>
                 </div>

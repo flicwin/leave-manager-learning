@@ -1,8 +1,16 @@
 ﻿@model IEnumerable<leave_manager.Models.EmployeeVM>
+@using leave_manager.App_Code;
 
 @{
+    if (Global.SiteLayout == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = Global.SiteLayout;
+    }
     ViewData["Title"] = "List of Employees";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Employee List</h1>
@@ -53,5 +61,5 @@
                 }
             </tbody>
         </table>
-        </div>
+    </div>
 </div>

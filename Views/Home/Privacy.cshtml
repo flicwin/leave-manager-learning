@@ -1,5 +1,14 @@
-﻿@{
+﻿@using leave_manager.App_Code;
+@{
     ViewData["Title"] = "Privacy Policy";
+    if (Global.SiteLayout == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = Global.SiteLayout;
+    }
 }
 <h1>@ViewData["Title"]</h1>
 

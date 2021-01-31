@@ -1,6 +1,17 @@
 ﻿@model EmployeeLeaveRequestViewVM
+@using leave_manager.App_Code;
 
-@{ ViewData["Title"] = "MyLeave"; }
+@{
+    if (Global.SiteLayout == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = Global.SiteLayout;
+    }
+    ViewData["Title"] = "MyLeave"; 
+}
 
 <h1>My Leave Allocations</h1>
 <div class="jumbotron">
@@ -10,7 +21,8 @@
             {
 <li class="list-group-item">
     <h6>@item.LeaveType.Name <span class="badge badge-secondary">@item.NumberOfDays</span>    </h6>
-</li>}
+</li>
+}
         </ul>
     </div>
 </div>
@@ -65,17 +77,16 @@
         <td class="text-center">
             @if (item.Cancelled)
             {
-                <span class="badge badge-secondary">Cancelled</span> }
-                else if (item.Approved == true)
-                {
-                <span class="badge badge-success">Approved</span> }
-                else if (item.Approved == false)
-                {
-                <span class="badge badge-danger">Rejected</span> }
-                else
-                {
-                <span class="badge badge-warning">Pending Approval</span>
-                }
+<span class="badge badge-secondary">Cancelled</span> }
+else if (item.Approved == true)
+{
+<span class="badge badge-success">Approved</span> }
+else if (item.Approved == false)
+{
+<span class="badge badge-danger">Rejected</span> }
+else
+{
+<span class="badge badge-warning">Pending Approval</span>                }
         </td>
 
         <td class="text-center">
@@ -86,8 +97,7 @@
 </a>}
 
         </td>
-    </tr>
-}
+    </tr>}
             </tbody>
         </table>
     </div>

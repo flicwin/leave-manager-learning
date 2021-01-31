@@ -1,6 +1,15 @@
 ﻿@model leave_manager.Models.LeaveTypeVM
+@using leave_manager.App_Code;
 
 @{
+    if (Global.SiteLayout == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = Global.SiteLayout;
+    }
     ViewData["Title"] = "Create";
 }
 

@@ -1,8 +1,16 @@
 ﻿@model leave_manager.Models.CreateLeaveRequestVM
+@using leave_manager.App_Code;
 
 @{
+    if (Global.SiteLayout == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = Global.SiteLayout;
+    }
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Create a Leave Request</h1>
@@ -43,14 +51,14 @@
         </form>
     </div>
 </div>
-@section Scripts{ 
+@section Scripts{
     <script>
-  $( function() {
-      $(".datepicker").datepicker({ dateFormat: "dd MM yy" });
-    $( "#anim" ).on( "change", function() {
-        $(".datepicker").datepicker("option", "showAnim", $(this).val() );
-    });
-  } );
+        $(function () {
+            $(".datepicker").datepicker({ dateFormat: "dd MM yy" });
+            $("#anim").on("change", function () {
+                $(".datepicker").datepicker("option", "showAnim", $(this).val());
+            });
+        });
     </script>
 }
 

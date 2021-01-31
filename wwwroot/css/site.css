@@ -1,8 +1,16 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 .landing {
-/*    background: url(https://res.cloudinary.com/flic-media/image/upload/v1611462279/leaving_ym4qls.webp) center center fixed;
-    background-size: cover;*/
+    background: url(https://res.cloudinary.com/flic-media/image/upload/v1611462279/leaving_ym4qls.webp) center center fixed;
+    background-size: cover;
+}
+@font-face {
+    font-family: 'Rage';
+    src: url("../webfonts/RAGE.TTF");
+}
+.myRage {
+    font-family: Rage;
+    font-size:2.5em;
 }
 a.navbar-brand {
   white-space: normal;
@@ -59,11 +67,12 @@ button.accept-policy {
 html {
     position: relative;
     min-height: 100%;
-
+    background: url(https://res.cloudinary.com/flic-media/image/upload/v1611462279/leaving_ym4qls.webp) center center fixed;
+    background-size: cover;
 }
 body {
     /* Margin bottom by footer height */
-    margin-bottom: 60px;
+    /*margin-bottom: 60px;*/
     background: url(https://res.cloudinary.com/flic-media/image/upload/v1611462279/leaving_ym4qls.webp) center center fixed;
     background-size: cover;
 }

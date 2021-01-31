@@ -1,8 +1,22 @@
-﻿@{
+﻿@using leave_manager.App_Code;
+
+@{
+    if (Global.SiteLayout == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = Global.SiteLayout;
+    }
     ViewData["Title"] = "Home";
 }
-
-    <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <p><b>Leave Manager</b> is a .NET Core learning result achieved by Felicity Winter (<a href="https://flic.MEDIA" target="_blank" style="text-decoration-color:#373737; text-decoration-line:none;">flic.MEDIA</a>).</p>
-    </div>
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p><b>Leave Manager</b> is a .NET Core learning result achieved by Felicity Winter (<a href="https://flic.MEDIA" target="_blank" style="text-decoration-color:#373737; text-decoration-line:none;">flic.MEDIA</a>).</p><br /><br />
+    
+    <form>
+        <input type="submit" name="response" value="Use AdminLTE" formaction=@Url.Action("SetCookieAdmin") formmethod="post" class="btn btn-outline-primary" />&nbsp;
+        <input type="submit" name="response" value="Use Flic-friendly" formaction=@Url.Action("SetCookieFlic") formmethod="post" class="btn btn-outline-danger" />
+    </form>
+</div>

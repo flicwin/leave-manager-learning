@@ -1,8 +1,16 @@
-﻿@model leave_manager.Models.LeaveRequestVM
+﻿@using leave_manager.App_Code;
+@model leave_manager.Models.LeaveRequestVM
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Global.SiteLayout == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = Global.SiteLayout;
+    }
 }
 
 <h1>Assess @Model.RequestingEmployee.FirstName's @Model.LeaveType.Name Leave Request</h1>
@@ -57,9 +65,10 @@
         </dd>
     </dl>
 </div>
-<div>@if (Model.Approved == null)
-{
-    <a class="btn btn-outline-success" asp-action="ApproveRequest" asp-route-id="@Model.Id">Approve</a> <a class="btn btn-outline-danger" asp-action="RejectRequest" asp-route-id="@Model.Id">Reject</a>
-}
-    <a class="btn btn-outline-secondary" asp-action="Index">Back to List</a>
+<div>
+    @if (Model.Approved == null)
+    {
+        <a class="btn btn-outline-success" asp-action="ApproveRequest" asp-route-id="@Model.Id">Approve</a> <a class="btn btn-outline-danger" asp-action="RejectRequest" asp-route-id="@Model.Id">Reject</a>
+    }
+<a class="btn btn-outline-secondary" asp-action="Index">Back to List</a>
 </div>

@@ -15,7 +15,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using leave_manager.Data;
 namespace leave_manager.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
